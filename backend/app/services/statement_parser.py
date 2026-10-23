@@ -64,6 +64,7 @@ class StatementParser:
         and accurately classifies debit/credit transactions across multi-layout Indian bank PDFs.
         """
         text = ""
+        tmp_path = None
         # 1. Try pdftotext with layout preservation
         try:
             with tempfile.NamedTemporaryFile(suffix=".pdf", delete=False) as tmp:
@@ -77,7 +78,6 @@ class StatementParser:
 
             proc = subprocess.run(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=True)
             text = proc.stdout.decode("utf-8", errors="ignore")
-            os.remove(tmp_path)
         except Exception:
             # 2. Fallback to pypdf
             try:
@@ -90,6 +90,12 @@ class StatementParser:
                 text = "\x0c".join(pages_text)
             except Exception as e:
                 raise ValueError(f"Unable to decrypt or parse PDF bank statement: {str(e)}")
+        finally:
+            if tmp_path and os.path.exists(tmp_path):
+                try:
+                    os.remove(tmp_path)
+                except OSError:
+                    pass
 
         if not text.strip():
             raise ValueError("PDF statement contains no readable text. Ensure password is valid if encrypted.")
