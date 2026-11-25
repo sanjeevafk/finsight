@@ -2,7 +2,7 @@
 
 FinSight is a machine learning system designed to parse raw Indian bank statements, extract high-dimensional behavioral features, classify lifestyle spending archetypes, and provide actionable financial health diagnostics.
 
-Developed as a term project for an Intro to Machine Learning course, FinSight demonstrates an end-to-end applied ML pipeline—from domain-specific feature engineering to supervised classification, regression, unsupervised clustering, and counterfactual simulation. Trained models and datasets are hosted on the Hugging Face [Model Hub](https://huggingface.co/sanjeevafk/finsight-indian-tax-models) and [Dataset Hub](https://huggingface.co/datasets/sanjeevafk/indian-banking-tax-profiles-2025).
+Developed as a term project for an Intro to Machine Learning course, FinSight demonstrates an end-to-end applied ML pipeline—from domain-specific feature engineering to supervised classification, regression, unsupervised clustering, and counterfactual simulation. Trained models are included in [](models/) and the dataset is hosted on the Hugging Face [Dataset Hub](https://huggingface.co/datasets/sanjeevafk/indian-banking-tax-profiles-2025).
 
 ---
 
